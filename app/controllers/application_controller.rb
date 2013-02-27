@@ -11,9 +11,7 @@ class ApplicationController < ActionController::Base
     render :json => results.sort
     swish.close
   end
-  
-  
-  
+
   
   def browse
     files = Array.new
