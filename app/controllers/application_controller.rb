@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
     swish.query(params[:query]).each do |result|
       results.push(result.docpath)
     end
-    render :json => results.sort
+    render :json => { :results => results.sort }
     swish.close
   end
 
