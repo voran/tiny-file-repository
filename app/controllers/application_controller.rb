@@ -18,7 +18,6 @@ class ApplicationController < ActionController::Base
       format.html { render }
       format.json { render :json => @output}
       format.xml {render :xml => @output.to_xml(:root => 'output')}
-      format.any { render :status => 406, :text => @@unsupported_format_message }
     end
   end
 
@@ -50,7 +49,6 @@ class ApplicationController < ActionController::Base
       format.html { render }
       format.json { render :json => @output}
       format.xml {render :xml => @output.to_xml(:root => 'output')}
-      format.any { render :text => "wazaa" }
     end
   end
 end
