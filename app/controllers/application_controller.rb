@@ -40,7 +40,7 @@ class ApplicationController < ActionController::Base
       return
     end
     
-    if !File.directory?("#{@root}/#{@entry}")
+    if !File.directory?("#{@root}/#{@entry}") or @entry.nil?
       @entry = ""
     end
     
