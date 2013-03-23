@@ -1,1 +1,11 @@
-search
+<form class="navbar-form pull-right">
+    <input class="span2" type="query" placeholder="Search String...">
+    <button type="submit" class="btn">SGo</button>
+</form>
+
+<% @output.each do |file| %>
+  <div class="row">
+    <div class="span1"><img src="http://cdn.stoychev.info/icons/index/<%= file.split('.')[-1].downcase %>.png" width="24" height="24" alt="<%= file.split('.')[-1].downcase %>" /></div>
+    <div class="span9"><a href="<%= file %>"><%= file %></a></div>
+  </div>
+<% end %>
