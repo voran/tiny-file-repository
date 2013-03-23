@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
     subdirs = Array.new
     
     @entry = params[:dir]
-    music_root = Rails.application.config.music_root
+    music_root = "/data/Music"
     
     if !File.directory?(music_root + '/' + @entry) or @entry.nil?
       @entry = ""
