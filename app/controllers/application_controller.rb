@@ -36,8 +36,8 @@ class ApplicationController < ActionController::Base
     fiels = files.sort
     subdirs = subdirs.sort
     respond_to do |format|
-      format.html render :template => "application/browse"
-      format.json render :json => {:subdirs => subdirs, :files => files }
+      format.html
+      format.json { render :json => {:subdirs => subdirs, :files => files } }
       format.any { render :text => "Invalid format", :status => 403 }
     end
     
