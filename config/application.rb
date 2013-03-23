@@ -66,6 +66,6 @@ module Muzika
     config.assets.version = '1.0'
     
     # Specify the music root
-    config.music.root = "/data/Music"
+    config.music_root = "/data/Music"
   end
 end
