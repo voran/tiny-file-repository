@@ -31,11 +31,15 @@ class ApplicationController < ActionController::Base
     
     current_dir = "/data/Music/#{params[:dir]}"
     
-    if !File.directory?(current_dir)
-      current_dir ="/data/Music/"
-    elsif !File.file?(current_dir)
+    if File.file?(current_dir)
+      render :file => current_dir
       return
     end
+    
+    if !File.directory?(current_dir)
+      current_dir ="/data/Music/"
+    end
+    
     
     
     Dir.foreach(current_dir) do |entry|
