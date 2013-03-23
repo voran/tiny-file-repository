@@ -41,13 +41,11 @@ class ApplicationController < ActionController::Base
       end
     end
     
-    fiels = files.sort
-    subdirs = subdirs.sort
-    
+    @output = { :subdirs => subdirs.sort, :files => files.sort }
     
     respond_to do |format|
       format.html { render }
-      format.json { render :json => {:subdirs => subdirs, :files => files }}
+      format.json { render :json => @output}
     end
     
   end
