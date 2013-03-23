@@ -64,5 +64,8 @@ module Muzika
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+    
+    # Specify the music root
+    config.music.root = "/data/Music"
   end
 end

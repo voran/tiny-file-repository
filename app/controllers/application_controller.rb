@@ -32,22 +32,22 @@ class ApplicationController < ActionController::Base
     files = Array.new
     subdirs = Array.new
     
-    @root = "/data/Music"
     @entry = params[:dir]
+    music_root = Rails.application.config.music_root
     
-    if File.file?("#{@root}/#{@entry}")
-      send_file @entry
+    if File.file?(music_root + '/' + @entry)
+      send_file music_root + '/' + @entry
       return
     end
     
-    if !File.directory?("#{@root}/#{@entry}") or @entry.nil?
+    if !File.directory?(music_root + '/' + @entry) or @entry.nil?
       @entry = ""
     end
     
     
     
-    Dir.foreach("#{@root}/#{@entry}") do |subentry|
-      subentry_fullpath = "#{@root}/#{@entry}/#{subentry}"
+    Dir.foreach(music_root + '/' + @entry) do |subentry|
+      subentry_fullpath = music_root + '/' + @entry + '/' + subentry
       if File.directory?(subentry_fullpath) and subentry != '.' and (subentry != '..' or !params[:dir].nil?)
         subdirs.push(subentry)
       elsif File.file?(subentry_fullpath)
