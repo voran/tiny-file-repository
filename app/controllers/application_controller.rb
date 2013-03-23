@@ -22,6 +22,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def submit
+    reirect_to "/search.html/#{params[:query]}", :status => :moved_permanently
+  end
 
 
   
