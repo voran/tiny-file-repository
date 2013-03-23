@@ -12,7 +12,18 @@
     <div class="span1"><img src="http://cdn.stoychev.info/icons/index/<%= file.split('.')[-1].downcase %>.png" width="24" height="24" alt="<%= file.split('.')[-1].downcase %>" /></div>
     <div class="span11">
       <% file.split('/').each do | path_chunk | %>
-        / <a href="/browse.html/<%= "#{file.split(path_chunk)[0]}#{path_chunk}" %>/"><%= path_chunk %></a>
+            
+        <%     
+          path_updirs = file.split(path_chunk)[0];
+          path_updirs_urlencoded = "/"
+          if !path_updir.nil?
+            path_updir.split('/').each do |updir_chuk| 
+              path_updirs_urlencoded += u updir_chunk + '/'
+            end
+          end
+        %>
+      
+        / <a href="/browse.html/<%= path_updirs_urlencoded + path_chunk" %>/"><%= path_chunk %></a>
       <% end %>
     </div>
   </div>
