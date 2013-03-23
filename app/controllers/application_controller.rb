@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  @@unsupported_format_message = "406 Unacceptable: Unsupported Return Format Specified" 
+  
   
   def search
     results = Array.new
@@ -16,7 +18,7 @@ class ApplicationController < ActionController::Base
       format.html { render }
       format.json { render :json => @output}
       format.xml {render :xml => @output.to_xml(:root => 'output')}
-      format.any { head :forbidden }
+      format.any { render :status => 406, :text => @@unsupported_format_message }
     end
   end
 
@@ -48,7 +50,7 @@ class ApplicationController < ActionController::Base
       format.html { render }
       format.json { render :json => @output}
       format.xml {render :xml => @output.to_xml(:root => 'output')}
-      format.any { head :forbidden }
+      format.any { render :status => 406, :text => @@unsupported_format_message }
     end
   end
 end
