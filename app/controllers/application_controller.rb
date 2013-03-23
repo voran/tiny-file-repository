@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
-  def index
+  def search
     @output = Array.new
     @query = params[:query]
     
@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
 
 
   
-  def browse
+  def index
     files = Array.new
     subdirs = Array.new
     
