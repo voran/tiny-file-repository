@@ -35,11 +35,9 @@ class ApplicationController < ActionController::Base
     @entry = params[:dir]
     @music_root = "/data/Music"
 
-    if  @entry.nil? or !File.directory?(@music_root + '/' + @entry)
-      @entry = ""
-    end
-    
-    if File.file?(@music_root + '/' + @entry)
+    if  @entry.nil? or (!File.directory?(@music_root + '/' + @entry) and File.file?(@music_root + '/' + @entry))
+      @entry = ""    
+    elsif File.file?(@music_root + '/' + @entry)
       send_file @music_root + '/' + @entry
       return
     end
