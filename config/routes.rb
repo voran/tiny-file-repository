@@ -1,4 +1,4 @@
 Muzika::Application.routes.draw do
-  match "/api/search(.:format)/:query(/:page)(/:results_per_page)" => "application#search"
-  match "/api/browse(.:format)(/*dir)" => "application#browse"
+  match "/search(.:format)/:query(/:page)(/:results_per_page)" => "application#search"
+  match "/browse(.:format)(/*dir)" => "application#browse"
 end
