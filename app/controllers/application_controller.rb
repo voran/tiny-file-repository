@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
     
     current_dir = "/data/Music/#{params[:dir]}"
     
-    if !File.directory?(current_dir)?
+    if !File.directory?(current_dir)
       current_dir ="/data/Music/"
     end
     
