@@ -34,8 +34,8 @@ class ApplicationController < ActionController::Base
     
     @urrent_dir = "/data/Music/#{params[:dir]}"
     
-    if File.file?(@@entry)
-      send_file @@entry
+    if File.file?(@entry)
+      send_file @entry
       return
     end
     
