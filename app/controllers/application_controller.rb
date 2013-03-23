@@ -16,6 +16,7 @@ class ApplicationController < ActionController::Base
       format.html { render }
       format.json { render :json => @output}
       format.xml {render :xml => @output.to_xml(:root => 'output')}
+      format.any { head :forbidden }
     end
   end
 
@@ -47,6 +48,7 @@ class ApplicationController < ActionController::Base
       format.html { render }
       format.json { render :json => @output}
       format.xml {render :xml => @output.to_xml(:root => 'output')}
+      format.any { head :forbidden }
     end
   end
 end
