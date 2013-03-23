@@ -10,14 +10,14 @@ class ApplicationController < ActionController::Base
     end
     
     swish.close
-    results = results.sort
+    @output = results.sort
     
     respond_to do |format|
       format.html { render }
-      format.json { render :json => { :results => results }}
+      format.json { render :json => @output}
+      format.xml {render :xml => @output.to_xml(:root => 'output')}
     end
   end
-
 
 
 
@@ -48,6 +48,5 @@ class ApplicationController < ActionController::Base
       format.json { render :json => @output}
       format.xml {render :xml => @output.to_xml(:root => 'output')}
     end
-    
   end
 end
