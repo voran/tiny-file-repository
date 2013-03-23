@@ -1,17 +1,3 @@
 <pre>
   <%= @output.inspect %>
 </pre>
-
-<% @output.subdirs.each do |subdir| %>
-  <div class="row">
-    <div class="span2">icon</div>
-    <div class="span6"><%= subdir %></div>
-  </div>
-<% end %>
-
-<% @output.files.each do |file| %>
-  <div class="row">
-    <div class="span2">icon</div>
-    <div class="span6"><%= file %></div>
-  </div>
-<% end %>
