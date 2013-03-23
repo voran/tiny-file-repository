@@ -34,7 +34,6 @@ class ApplicationController < ActionController::Base
     if !File.directory?(current_dir)
       current_dir ="/data/Music/"
     elsif !File.file?(current_dir)
-      render :file => current_dir
       return
     end
     
