@@ -1,6 +1,6 @@
 <div class="hero-unit">           
    <a href="/browse.php/">root</a>
-   <% @entry.split('/').each do | path_chunk | %>
+   <% @entry..split("/data/Music/")[0].split('/').each do | path_chunk | %>
      > <a href="/browse.php/<%= @entry.split(path_chunk)[0] + path_chunk %>"><%= path_chunk %></a>
    <% end %>
 </div>
