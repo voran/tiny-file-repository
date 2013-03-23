@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
     current_dir = "/data/Music/#{params[:dir]}"
     
     if File.file?(current_dir)
-      render :file => current_dir
+      send_file current_dir
       return
     end
     
