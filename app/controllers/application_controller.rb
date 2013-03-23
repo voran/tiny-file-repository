@@ -33,19 +33,19 @@ class ApplicationController < ActionController::Base
     subdirs = Array.new
     
     @entry = params[:dir]
-    music_root = "/data/Music"
+    @music_root = "/data/Music"
     
-    if !File.directory?(music_root + '/' + @entry) or @entry.nil?
+    if !File.directory?(@music_root + '/' + @entry) or @entry.nil?
       @entry = ""
     end
     
-    if File.file?(music_root + '/' + @entry)
-      send_file music_root + '/' + @entry
+    if File.file?(@music_root + '/' + @entry)
+      send_file @music_root + '/' + @entry
       return
     end
     
-    Dir.foreach(music_root + '/' + @entry) do |subentry|
-      subentry_fullpath = music_root + '/' + @entry + '/' + subentry
+    Dir.foreach(@music_root + '/' + @entry) do |subentry|
+      subentry_fullpath = @music_root + '/' + @entry + '/' + subentry
       if File.directory?(subentry_fullpath) and subentry != '.' and (subentry != '..' or !params[:dir].nil?)
         subdirs.push(subentry)
       elsif File.file?(subentry_fullpath)
