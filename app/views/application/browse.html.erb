@@ -2,6 +2,7 @@
    <a href="/browse.php/">root</a>
    <% @entry.split('/').each do | path_chunk | %>
      > <a href="/browse.php/<%= @entry.split(path_cunk)[0] %>/<%= path_chunk %>"><%= path_chunk %></a>
+   <% end %>
 </div>
 
 
