@@ -1,23 +1,23 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  @@unsupported_format_message = "406 Unacceptable: Unsupported Return Format Specified" 
-  
   
   def search
-    results = Array.new
+    @output = Array.new
+    @query = params[:query]
     
-    swish = SwishE.new("db/index.swish-e")
-    swish.query(params[:query]).each do |result|
-      results.push(result.docpath)
-    end
-    
-    swish.close
-    @output = results.sort
+    if !@query.nil?
+      swish = SwishE.new("db/index.swish-e")
+      swish.query(params[:query]).each do |result|
+        @output.push(result.docpath)
+      end
+      swish.close
+      @output = @output.sort
+    end   
     
     respond_to do |format|
       format.html { render }
-      format.json { render :json => @output}
-      format.xml {render :xml => @output.to_xml(:root => 'output')}
+      format.json { render @output}
+      format.xml {render @output }
     end
   end
 
