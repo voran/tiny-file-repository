@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
-  def search
+  def index
     @output = Array.new
     @query = params[:query]
     
