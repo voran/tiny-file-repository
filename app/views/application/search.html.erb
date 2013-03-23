@@ -1,6 +1,6 @@
 <div class="navbar">
     <form class="navbar-form" method="get">
-        <input id="q" class="span2" type="text" placeholder="Search String...">
+        <input name="query" class="span2" type="text" placeholder="Search String...">
         <button type="submit" class="btn">Go</button>
     </form>
 </div>
@@ -8,6 +8,6 @@
 <% @output.each do |file| %>
   <div class="row">
     <div class="span1"><img src="http://cdn.stoychev.info/icons/index/<%= file.split('.')[-1].downcase %>.png" width="24" height="24" alt="<%= file.split('.')[-1].downcase %>" /></div>
-    <div class="span9"><a href="<%= file %>"><%= file %></a></div>
+    <div class="span9"><a href="/browse.html/<%= file %>"><%= file %></a></div>
   </div>
 <% end %>
