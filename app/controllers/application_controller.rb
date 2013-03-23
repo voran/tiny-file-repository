@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
     files = Array.new
     subdirs = Array.new
     
-    current_dir = "/home/yavor/Music/#{params[:dir]}"
+    current_dir = "/data/Music/#{params[:dir]}"
     
     Dir.foreach(current_dir) do |entry|
       entry_fullpath = "#{current_dir}/#{entry}"
