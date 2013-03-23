@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
     files = Array.new
     subdirs = Array.new
     
-    @urrent_dir = "/data/Music/#{params[:dir]}"
+    @entry = "/data/Music/#{params[:dir]}"
     
     if File.file?(@entry)
       send_file @entry
