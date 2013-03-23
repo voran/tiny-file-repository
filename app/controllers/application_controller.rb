@@ -8,13 +8,17 @@ class ApplicationController < ActionController::Base
     swish.query(params[:query]).each do |result|
       results.push(result.docpath)
     end
+    
     swish.close
     results = results.sort
+    
     respond_to do |format|
       format.html { render }
       format.json { render :json => { :results => results }}
     end
   end
+
+
 
 
   
@@ -24,6 +28,10 @@ class ApplicationController < ActionController::Base
     
     current_dir = "/data/Music/#{params[:dir]}"
     
+    if !File.directory?(current_dir)?
+      current_dir ="/data/Music/"
+    end
+    
     Dir.foreach(current_dir) do |entry|
       entry_fullpath = "#{current_dir}/#{entry}"
       if File.directory?(entry_fullpath) and entry != '.' and (entry != '..' or !params[:dir].nil?)
@@ -32,8 +40,11 @@ class ApplicationController < ActionController::Base
         files.push(entry)
       end
     end
+    
     fiels = files.sort
     subdirs = subdirs.sort
+    
+    
     respond_to do |format|
       format.html { render }
       format.json { render :json => {:subdirs => subdirs, :files => files }}
