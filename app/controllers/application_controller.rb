@@ -8,8 +8,12 @@ class ApplicationController < ActionController::Base
     swish.query(params[:query]).each do |result|
       results.push(result.docpath)
     end
-    render :json => { :results => results.sort }
     swish.close
+    results = results.sort
+    respond_to do |format|
+      format.html
+      format.json render :json => { :results => results }
+    end
   end
 
 
@@ -28,6 +32,12 @@ class ApplicationController < ActionController::Base
         files.push(entry)
       end
     end
-    render :json => {:subdirs => subdirs.sort, :files => files.sort }
+    fiels = files.sort
+    subdirs = subdirs.sort
+    respond_to do |format|
+      format.html
+      format.json render :json => {:subdirs => subdirs, :files => files }
+    end
+    
   end
 end
