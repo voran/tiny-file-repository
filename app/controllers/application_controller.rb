@@ -12,12 +12,13 @@ class ApplicationController < ActionController::Base
       end
       swish.close
       @output = @output.sort
-    end   
+    end
+    
     
     respond_to do |format|
       format.html { render }
-      format.json { render @output}
-      format.xml {render @output }
+      format.json { render :json => @output}
+      format.xml {render :xml => @output.to_xml(:root => 'output')}
     end
   end
 
