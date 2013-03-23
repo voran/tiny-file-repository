@@ -34,8 +34,8 @@ class ApplicationController < ActionController::Base
     
     @entry = params[:dir]
     @music_root = "/data/Music"
-    
-    if !File.directory?(@music_root + '/' + @entry) or @entry.nil?
+
+    if  @entry.nil? or !File.directory?(@music_root + '/' + @entry)
       @entry = ""
     end
     
