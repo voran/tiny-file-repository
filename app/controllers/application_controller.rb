@@ -35,16 +35,14 @@ class ApplicationController < ActionController::Base
     @entry = params[:dir]
     music_root = Rails.application.config.music_root
     
-    if File.file?(music_root + '/' + @entry)
-      send_file music_root + '/' + @entry
-      return
-    end
-    
     if !File.directory?(music_root + '/' + @entry) or @entry.nil?
       @entry = ""
     end
     
-    
+    if File.file?(music_root + '/' + @entry)
+      send_file music_root + '/' + @entry
+      return
+    end
     
     Dir.foreach(music_root + '/' + @entry) do |subentry|
       subentry_fullpath = music_root + '/' + @entry + '/' + subentry
