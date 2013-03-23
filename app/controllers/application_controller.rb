@@ -45,7 +45,8 @@ class ApplicationController < ActionController::Base
     
     respond_to do |format|
       format.html { render }
-      format.json { render :json => @output}
+      format.json { render }
+      format.xml  { render }
     end
     
   end
