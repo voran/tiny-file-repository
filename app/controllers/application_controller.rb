@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
     files = Array.new
     subdirs = Array.new
     
-    @root = "/data/Music/"
+    @root = "/data/Music"
     @entry = params[:dir]
     
     if File.file?("#{@root}/#{@entry}")
