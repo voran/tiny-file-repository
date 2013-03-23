@@ -1,13 +1,13 @@
 <% @output[:subdirs].each do |subdir| %>
   <div class="row">
     <div class="span2"><img src="http://cdn.stoychev.info/icons/index/dir.png" width="24" height="24" alt="folder icon"/></div>
-    <div class="span6"><%= subdir %></div>
+    <div class="span6"><a href="<%= subdir %>"><%= subdir %></a></div>
   </div>
 <% end %>
 
 <% @output[:files].each do |file| %>
   <div class="row">
     <div class="span2"><img src="http://cdn.stoychev.info/icons/index/<%= file[-3, 4] %>.png" alt="folder icon"/></div>
-    <div class="span6"><%= file %></div>
+    <div class="span6"><a href="<%= file %>"><%= file %></a></div>
   </div>
 <% end %>
