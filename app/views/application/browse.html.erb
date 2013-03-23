@@ -1,3 +1,10 @@
+<div class="hero-unit">           
+   <a href="/browse.php/">root</a>
+   <% @entry.split('/').each do | path_chunk | %>
+     > <a href="/browse.php/<%= @entry.split(path_cunk)[0] %>/<%= path_chunk %>"><%= path_chunk %></a>
+</div>
+
+
 <% @output[:subdirs].each do |subdir| %>
   <div class="row">
     <div class="span1"><img src="http://cdn.stoychev.info/icons/index/dir.png" width="24" height="24" alt="folder icon"/></div>
