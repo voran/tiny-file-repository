@@ -20,12 +20,12 @@ asd%20sd
           path_updirs_urlencoded = "/"
           if !path_updir.nil?
             path_updir.split('/').each do |updir_chuk| 
-              path_updirs_urlencoded += u updir_chunk + '/'
+              path_updirs_urlencoded += u(updir_chunk) + '/'
             end
           end
         %>
       
-        / <a href="/browse.html/<%= path_updirs_urlencoded + path_chunk %>/"><%= path_chunk %></a>
+        / <a href="/browse.html/<%= path_updirs_urlencoded + u(path_chunk) %>/"><%= path_chunk %></a>
       <% end %>
     </div>
   </div>
