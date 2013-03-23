@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
 
 
   
-  def index
+  def browse
     files = Array.new
     subdirs = Array.new
     
