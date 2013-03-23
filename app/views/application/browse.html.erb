@@ -1,8 +1,8 @@
 <div class="hero-unit">           
    <a href="/browse.html/">root</a>
    <% if @entry.include? "/" %>
-       <% @entry.split('/').each do | path_chunk | %>
-         > <a href="/browse.php/<%= @entry.split(path_chunk)[0] + path_chunk %>"><%= path_chunk %></a>
+       <% "/" + @entry.split('/').each do | path_chunk | %>
+         > <a href="/browse.html/<%= @entry.split(path_chunk)[0] + path_chunk %>"><%= path_chunk %></a>
        <% end %>
    <% end %>
 </div>
