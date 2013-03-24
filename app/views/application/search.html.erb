@@ -14,8 +14,7 @@
         
       chunks = file.split('/');
       <% chunks.each do | path_chunk, i | %>        
-        <%
-          f    
+        <%   
           path_updirs = file.split(path_chunk)[0];
           path_updirs_urlencoded = ""
           if !path_updirs.nil?
