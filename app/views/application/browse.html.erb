@@ -3,7 +3,7 @@
    <% @entry.split('/').each do | path_chunk | %>
      <% 
        updir_urlencoded = ""
-       updir = @entry.split(path_chunk)[0].split('/')
+       updir = @entry.split(path_chunk)[0]
        if !updir.nil?
          updir.split('/') do | updir_chunk |
            updir_urlencoded  += '/' + u(updir_chunk)
