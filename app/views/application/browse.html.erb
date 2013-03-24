@@ -6,7 +6,7 @@
        updir = @entry.split(path_chunk)[0]
        if !updir.nil?
          updir.split('/').each do | updir_chunk |
-           updir_urlencoded  += '/' + u(updir_chunk)
+           updir_urlencoded  =  updir_urlencoded + '/' + u(updir_chunk)
          end
        end
      %>
