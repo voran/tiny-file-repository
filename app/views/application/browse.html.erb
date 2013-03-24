@@ -1,7 +1,15 @@
 <div class="hero-unit">           
    <a href="/browse.html/">root</a>
    <% @entry.split('/').each do | path_chunk | %>
-     / <a href="/browse.html/<%= "#{@entry.split(path_chunk)[0]}#{path_chunk}" %>/"><%= path_chunk %></a>
+     <% 
+       updir_urlencoded = ""
+       @entry.split(path_chunk)[0].split('/') do | updir_chunk | 
+     %>
+       <%
+         updir_urlencoded  += '/' + u(updir_chunk)
+       %>
+     <% end %>
+     / <a href="/browse.html/<%= updir_urlencoded + u(path_chunk) %>/"><%= path_chunk %></a>
    <% end %>
 </div>
 
