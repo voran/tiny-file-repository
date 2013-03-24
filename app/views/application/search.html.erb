@@ -1,5 +1,3 @@
-asd%20sd
-
 <div class="hero-unit">           
     <div class="navbar">
         <form class="navbar-form" method="get" action="/submit.html/">
@@ -13,9 +11,11 @@ asd%20sd
   <div class="row">
     <div class="span1"><img src="http://cdn.stoychev.info/icons/index/<%= file.split('.')[-1].downcase %>.png" width="24" height="24" alt="<%= file.split('.')[-1].downcase %>" /></div>
     <div class="span11">
-      <% file.split('/').each do | path_chunk | %>
-            
-        <%     
+        
+      chunks = file.split('/');
+      <% chunks.each do | path_chunk, i | %>        
+        <%
+          f    
           path_updirs = file.split(path_chunk)[0];
           path_updirs_urlencoded = ""
           if !path_updirs.nil?
@@ -24,8 +24,12 @@ asd%20sd
             end
           end
         %>
-      
-        / <a href="/browse.html<%= path_updirs_urlencoded + '/' + u(path_chunk) %>/"><%= path_chunk %></a>
+        
+        <% if i == chunks.length - 1 %>
+            / <a href="/browse.html<%= path_updirs_urlencoded + '/' + u(path_chunk) %>"><%= path_chunk %></a>
+        <% elsif %>
+            / <a href="/browse.html<%= path_updirs_urlencoded + '/' + u(path_chunk) %>/"><%= path_chunk %></a>
+        <% end %>
       <% end %>
     </div>
   </div>
