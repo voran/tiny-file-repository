@@ -3,12 +3,13 @@
    <% @entry.split('/').each do | path_chunk | %>
      <% 
        updir_urlencoded = ""
-       @entry.split(path_chunk)[0].split('/') do | updir_chunk | 
+       updir = @entry.split(path_chunk)[0].split('/')
+       if !updir.nil?
+         updir.split('/') do | updir_chunk |
+           updir_urlencoded  += '/' + u(updir_chunk)
+         end
+       end
      %>
-       <%
-         updir_urlencoded  += '/' + u(updir_chunk)
-       %>
-     <% end %>
      / <a href="/browse.html/<%= updir_urlencoded + u(path_chunk) %>/"><%= path_chunk %></a>
    <% end %>
 </div>
