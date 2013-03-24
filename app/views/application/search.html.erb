@@ -20,7 +20,7 @@ asd%20sd
           path_updirs_urlencoded = "/"
           if !path_updirs.nil?
             path_updirs.split('/').each do |updir_chunk| 
-               '/' + path_updirs_urlencoded += u(updir_chunk)
+               path_updirs_urlencoded += '/' + u(updir_chunk)
             end
           end
         %>
