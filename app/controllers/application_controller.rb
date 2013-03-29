@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  @music_baseurl = "/music/"
   include ApplicationHelper
   protect_from_forgery
   
@@ -33,7 +32,7 @@ class ApplicationController < ActionController::Base
   def browse
     files = Array.new
     subdirs = Array.new
-    
+    @music_baseurl = "/music/"
     @music_root = "/data/Music"
     
     @entry = (if params[:dir].nil? or !File.directory?(@music_root + '/' + params[:dir]) then "" else params[:dir] end)
