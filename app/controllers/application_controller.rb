@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
     
     @music_root = "/data/Music"
     
-    @entry = (if params[:dir].nil? or !File.directory?(@music_root + '/' + @entry) then "" else params[:dir] end)
+    @entry = (if params[:dir].nil? or !File.directory?(@music_root + '/' + arams[:dir]) then "" else params[:dir] end)
     @entry_urlencoded = urlencode(@entry)
     
     Dir.foreach(@music_root + '/' + @entry) do |subentry|
