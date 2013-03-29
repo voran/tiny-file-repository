@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
       swish.query(params[:query]).each do |result|
         entry = result.docpath
         @output.push(entry)
-        @output_urlencoded .push(entry))
+        @output_urlencoded.push(urlencode(entry))
       end
       swish.close
       @output = @output.sort
