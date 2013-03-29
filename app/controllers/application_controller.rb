@@ -2,17 +2,27 @@ class ApplicationController < ActionController::Base
   include ApplicationHelper
   protect_from_forgery
   
+  @@music_baseurl = "/music/"
+  
+  def music_baseurl
+    @@music_baseurl
+  end
+  
   def search
     @output = Array.new
+    @output_urlencoded = Array.new
     @query = params[:query]
     
     if !@query.nil?
       swish = SwishE.new("db/index.swish-e")
       swish.query(params[:query]).each do |result|
-        @output.push(result.docpath)
+        entry = result.docpath
+        @output.push(entry)
+        @output_urlencoded .push(entry))
       end
       swish.close
       @output = @output.sort
+      @output_urlencoded = @output.sort
     end
     
     
@@ -32,7 +42,7 @@ class ApplicationController < ActionController::Base
   def browse
     files = Array.new
     subdirs = Array.new
-    @music_baseurl = "/music/"
+    
     @music_root = "/data/Music"
     
     @entry = (if params[:dir].nil? or !File.directory?(@music_root + '/' + params[:dir]) then "" else params[:dir] end)
