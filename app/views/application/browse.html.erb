@@ -1,19 +1,9 @@
-<div class="hero-unit">           
-   <a href="/browse.html/">root</a>
-   <% @entry.split('/').each do | path_chunk | %>
-     <% 
-       updir_urlencoded = ""
-       updir = @entry.split(path_chunk)[0]
-       if !updir.nil?
-         updir.split('/').each do | updir_chunk |
-           updir_urlencoded  =  updir_urlencoded  + u(updir_chunk) + '/'
-         end
-       end
-     %>
-     / <a href="/browse.html/<%= updir_urlencoded + u(path_chunk) %>/"><%= path_chunk %></a>
+<div class="row">           
+   <a href="/browse.html/">Home</a>
+   <% 0.upto(@entry.split('/').length - 1) do | n | %>
+     / <a href="/browse.html/<%= @entry_urlencoded.split('/')[0..n].join('/') %>/"><%= @entry.split('/')[n] %></a>
    <% end %>
 </div>
-
 
 <% @output[:subdirs].each do |subdir| %>
   <div class="row">
@@ -25,6 +15,6 @@
 <% @output[:files].each do |file| %>
   <div class="row">
     <div class="span1"><img src="http://cdn.stoychev.info/icons/index/<%= file.split('.')[-1].downcase %>.png" width="24" height="24" alt="<%= file.split('.')[-1].downcase %>" /></div>
-    <div class="span9"><a href="<%=u file %>"><%= file %></a></div>
+    <div class="span9"><a href="<%= @music_baseurl + @entry_urlencoded + u(file) %>"><%= file %></a></div>
   </div>
 <% end %>

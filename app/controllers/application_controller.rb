@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include ApplicationHelper
   protect_from_forgery
   
   def search
@@ -32,15 +33,10 @@ class ApplicationController < ActionController::Base
     files = Array.new
     subdirs = Array.new
     
-    @entry = params[:dir]
     @music_root = "/data/Music"
-
-    if  @entry.nil? or (!File.directory?(@music_root + '/' + @entry) and !File.file?(@music_root + '/' + @entry))
-      @entry = ""    
-    elsif File.file?(@music_root + '/' + @entry)
-      send_file @music_root + '/' + @entry
-      return
-    end
+    @music_baseurl = "/music/"
+    @entry = (if params[:dir].nil? or (!File.directory?(@music_root + '/' + @entry) then "" else params[:dir] end)
+    @entry_urlencoded = urlencode(@entry)
     
     Dir.foreach(@music_root + '/' + @entry) do |subentry|
       subentry_fullpath = @music_root + '/' + @entry + '/' + subentry
