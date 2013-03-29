@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  @@music_baseurl = "/music/"
+  @music_baseurl = "/music/"
   include ApplicationHelper
   protect_from_forgery
   
