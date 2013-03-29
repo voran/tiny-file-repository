@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   
   @@music_baseurl = "/music/"
   
+  helper_method :music_baseurl
   def music_baseurl
     @@music_baseurl
   end
