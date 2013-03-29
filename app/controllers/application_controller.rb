@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   include ApplicationHelper
   protect_from_forgery
+  @@music_baseurl = "/music/"
   
   def search
     @output = Array.new
@@ -34,7 +35,7 @@ class ApplicationController < ActionController::Base
     subdirs = Array.new
     
     @music_root = "/data/Music"
-    @music_baseurl = "/music/"
+    
     @entry = (if params[:dir].nil? or !File.directory?(@music_root + '/' + @entry) then "" else params[:dir] end)
     @entry_urlencoded = urlencode(@entry)
     

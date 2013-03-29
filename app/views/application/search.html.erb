@@ -26,7 +26,7 @@
         %>
         
         <% if i == chunks.length - 1 %>
-            / <a href="/browse.html<%= path_updirs_urlencoded + '/' + u(path_chunk) %>"><%= path_chunk %></a>
+            / <a href="<%= @@music_baseurl path_updirs_urlencoded + '/' + u(path_chunk) %>"><%= path_chunk %></a>
         <% elsif %>
             / <a href="/browse.html<%= path_updirs_urlencoded + '/' + u(path_chunk) %>/"><%= path_chunk %></a>
         <% end %>
