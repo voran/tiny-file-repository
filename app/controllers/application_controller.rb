@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
+  @@music_baseurl = "/music/"
   include ApplicationHelper
   protect_from_forgery
-  @@music_baseurl = "/music/"
   
   def search
     @output = Array.new
