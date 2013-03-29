@@ -12,9 +12,9 @@
     <div class="span1"><img src="http://cdn.stoychev.info/icons/index/<%= @output[i].split('.')[-1].downcase %>.png" width="24" height="24" alt="<%= @output[i].split('.')[-1].downcase %>" /></div>
     <div class="span11">
       <%  0.upto(@output[i].split('/').length - 2).each do | n | %>
-            / <a href="/browse.html<%= @output_urlencoded[i].split('/')[0..n].join('/') %>/"><%= @output[i].split('/')[n] %></a>
+            / <a href="/browse.html/<%= @output_urlencoded[i].split('/')[0..n].join('/') %>/"><%= @output[i].split('/')[n] %></a>
       <% end %>
-       / <a href="/music/<%= @output_urlencoded[i] %>/"><%= @output[i].split('/')[-1] %></a>
+       / <a href="/music/<%= @output_urlencoded[i] %>"><%= @output[i].split('/')[-1] %></a>
     </div>
   </div>
 <% end %>
