@@ -30,7 +30,7 @@
             <li><a href="/browse.html<%= path_updirs_urlencoded + '/' + u(path_chunk) %>"><%= path_chunk %></a> <span class="divider">/</span></li>
         <% elsif %>
             <li><a href="/browse.html<%= path_updirs_urlencoded + '/' + u(path_chunk) %>/"><%= path_chunk %></a> <span class="divider">/</span></li>
-
+        <% end %>
       <%  0.upto(@output[i].split('/').length - 2).each do | n | %>
             / <a href="/browse.html/<%= @output_urlencoded[i].split('/')[0..n].join('/') %>/"><%= @output[i].split('/')[n] %></a>
       <% end %>
