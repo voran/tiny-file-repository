@@ -1,17 +1,29 @@
 class ApplicationController < ActionController::Base
+  include ApplicationHelper
   protect_from_forgery
+  
+  @@music_baseurl = "/music/"
+  
+  helper_method :music_baseurl
+  def music_baseurl
+    @@music_baseurl
+  end
   
   def search
     @output = Array.new
+    @output_urlencoded = Array.new
     @query = params[:query]
     
     if !@query.nil?
       swish = SwishE.new("db/index.swish-e")
       swish.query(params[:query]).each do |result|
-        @output.push(result.docpath)
+        entry = result.docpath
+        @output.push(entry)
+        @output_urlencoded.push(urlencode(entry))
       end
       swish.close
       @output = @output.sort
+      @output_urlencoded = @output.sort
     end
     
     
@@ -32,15 +44,10 @@ class ApplicationController < ActionController::Base
     files = Array.new
     subdirs = Array.new
     
-    @entry = params[:dir]
     @music_root = "/data/Music"
-
-    if  @entry.nil? or (!File.directory?(@music_root + '/' + @entry) and !File.file?(@music_root + '/' + @entry))
-      @entry = ""    
-    elsif File.file?(@music_root + '/' + @entry)
-      send_file @music_root + '/' + @entry
-      return
-    end
+    
+    @entry = (if params[:dir].nil? or !File.directory?(@music_root + '/' + params[:dir]) then "" else params[:dir] end)
+    @entry_urlencoded = urlencode(@entry)
     
     Dir.foreach(@music_root + '/' + @entry) do |subentry|
       subentry_fullpath = @music_root + '/' + @entry + '/' + subentry
