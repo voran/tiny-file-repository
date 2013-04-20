@@ -1,8 +1,10 @@
 <div class="span12 well">           
-    <div class="offset4 span4">
-        <form class="input-append" method="get" action="/submit.html/">
-            <input name="query" type="text" placeholder="Search String..." value="<%= @query %>"/>
-            <button type="submit" class="btn btn-primary">Go</button>
+    <div class="row">
+        <form class="offset4 span4" method="get" action="/submit.html/">
+            <div class="input-append">
+                <input name="query" type="text" placeholder="Search String..." value="<%= @query %>"/>
+                <button type="submit" class="btn btn-primary">Go</button>
+            </div>
         </form>
     </div>
 
