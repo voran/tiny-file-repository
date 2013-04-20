@@ -1,10 +1,13 @@
-<div class="row">           
+<ul class="breadcrumb">           
    <a href="/browse.html/">Home</a>
    <% 0.upto(@entry.split('/').length - 1) do | n | %>
-     / <a href="/browse.html/<%= @entry_urlencoded.split('/')[0..n].join('/') %>/"><%= @entry.split('/')[n] %></a>
+     <li>
+         <span class="divider">/</span> 
+         <a href="/browse.html/<%= @entry_urlencoded.split('/')[0..n].join('/') %>/"><%= @entry.split('/')[n] %></a>
+     </li>
    <% end %>
-</div>
-
+</ul>
+<div class="span12 well">
 <% @output[:subdirs].each do |subdir| %>
   <div class="row">
     <div class="span1"><img src="http://cdn.stoychev.info/icons/index/dir.png" width="24" height="24" alt="folder icon"/></div>
