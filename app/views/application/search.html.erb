@@ -11,7 +11,6 @@
   <div class="row">
     <div class="span1"><img src="http://cdn.stoychev.info/icons/index/<%= @output[i].split('.')[-1].downcase %>.png" width="24" height="24" alt="<%= @output[i].split('.')[-1].downcase %>" /></div>
     <div class="span11">
-<<<<<<< HEAD
       <ul class="breadcrumb">
       <%  
         chunks = file.split('/');
@@ -31,17 +30,13 @@
             <li><a href="/browse.html<%= path_updirs_urlencoded + '/' + u(path_chunk) %>"><%= path_chunk %></a> <span class="divider">/</span></li>
         <% elsif %>
             <li><a href="/browse.html<%= path_updirs_urlencoded + '/' + u(path_chunk) %>/"><%= path_chunk %></a> <span class="divider">/</span></li>
-        <% end %>
-=======
+
       <%  0.upto(@output[i].split('/').length - 2).each do | n | %>
             / <a href="/browse.html/<%= @output_urlencoded[i].split('/')[0..n].join('/') %>/"><%= @output[i].split('/')[n] %></a>
->>>>>>> branch 'master' of ssh://yavor@yavor-x2/~/git/muzika.git
       <% end %>
-<<<<<<< HEAD
+
       </ul>
-=======
        / <a href="/music/<%= @output_urlencoded[i] %>"><%= @output[i].split('/')[-1] %></a>
->>>>>>> branch 'master' of ssh://yavor@yavor-x2/~/git/muzika.git
     </div>
   </div>
 <% end %>
