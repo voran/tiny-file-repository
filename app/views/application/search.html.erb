@@ -1,11 +1,10 @@
-<div class="hero-unit">           
+<div class="span12 well">           
     <div class="navbar">
         <form class="navbar-form" method="get" action="/submit.html/">
             <input name="query" class="span6 input-large" type="text" placeholder="Search String..." value="<%= @query %>">
             <button type="submit" class="btn btn-large">Go</button>
         </form>
     </div>
-</div>
 
 <% 0.upto(@output.length - 1) do |i| %>
   <div class="row">
@@ -26,3 +25,4 @@
     </div>
   </div>
 <% end %>
+</div>
