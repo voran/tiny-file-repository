@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
       end
       swish.close
       @output = @output.sort
-      @output_urlencoded = @output.sort
+      @output_urlencoded = @output_urlencoded.sort
     end
     
     
