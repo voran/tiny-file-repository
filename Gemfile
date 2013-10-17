@@ -20,7 +20,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
-gem 'bootstrap-sass'
+gem 'bootstrap-sass-rails'
 
 
 # To use ActiveModel has_secure_password
