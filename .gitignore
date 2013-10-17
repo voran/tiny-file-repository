@@ -15,5 +15,5 @@
 /tmp
 
 # Ignore Swishe database files.
-db/index.swish-e
-db/index.swish-e.prop
+/db/index.swish-e
+/db/index.swish-e.prop
