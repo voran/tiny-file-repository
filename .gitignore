@@ -13,3 +13,7 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+# Ignore Swishe database files.
+/db/index.swish-e
+/db/index.swish-e.prop
