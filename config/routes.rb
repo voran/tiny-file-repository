@@ -1,6 +1,6 @@
 Muzika::Application.routes.draw do
-  match "/submit.html" => "application#submit"
-  match "/search(.:format)/(:query)(/:page)(/:results_per_page)" => "application#search"
+  match "/search(.:format)/" => "application#search"
   match "/browse(.:format)/(/*dir)" => "application#browse"
+  match "/index(.:format)" => "application#index"
   root :to => redirect("/search.html/")
 end

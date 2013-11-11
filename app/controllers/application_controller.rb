@@ -1,31 +1,30 @@
 class ApplicationController < ActionController::Base
-  include ApplicationHelper
   protect_from_forgery
-  
-  @@music_baseurl = "/music/"
-  
-  helper_method :music_baseurl
-  def music_baseurl
-    @@music_baseurl
-  end
+
   
   def search
-    @output = Array.new
-    @output_urlencoded = Array.new
-    @query = params[:query]
-    
-    if !@query.nil?
-      swish = SwishE.new("db/index.swish-e")
-      swish.query(params[:query]).each do |result|
-        entry = result.docpath
-        @output.push(entry)
-        @output_urlencoded.push(urlencode(entry))
-      end
-      swish.close
-      @output = @output.sort
-      @output_urlencoded = @output_urlencoded.sort
+    if params[:query]
+      query = params[:query].split
+      conditions = [(['lower(path) LIKE ?'] * query.length).join(' AND ')] + query.map { |keyword| "%#{keyword.downcase}%" }
+      @files = Kaminari.paginate_array(FileRecord.find(:all, :conditions => conditions)).page(params[:page])
     end
     
+    respond_to do |format|
+      format.html { render }
+      format.json { render :json => @files}
+      format.xml {render :xml => @files.to_xml(:root => 'output')}
+    end
+  end
+  
+  def index
+    FileRecord.delete_all
+    FileRecord.create(index_recursive(Rails.configuration.public_path + Rails.configuration.files_url))
+    redirect_to root_path
+  end
+  
+  def browse
+    @entry =  params[:dir] || ""
+    @output = find_entries(Rails.configuration.public_path + Rails.configuration.files_url + @entry)
     
     respond_to do |format|
       format.html { render }
@@ -33,37 +32,30 @@ class ApplicationController < ActionController::Base
       format.xml {render :xml => @output.to_xml(:root => 'output')}
     end
   end
-
-  def submit
-    redirect_to "/search.html/#{params[:query]}", :status => :moved_permanently
-  end
-
-
   
-  def browse
+  def find_entries(entry_path)
     files = Array.new
     subdirs = Array.new
-    
-    @music_root = "/data/Music"
-    
-    @entry = (if params[:dir].nil? or !File.directory?(@music_root + '/' + params[:dir]) then "" else params[:dir] end)
-    @entry_urlencoded = urlencode(@entry)
-    
-    Dir.foreach(@music_root + '/' + @entry) do |subentry|
-      subentry_fullpath = @music_root + '/' + @entry + '/' + subentry
-      if File.directory?(subentry_fullpath) and subentry != '.' and (subentry != '..' or !params[:dir].nil?)
+    Dir.foreach(entry_path) do |subentry|
+      subentry_path = entry_path + "/" + subentry
+      if File.directory?(subentry_path) and !Rails.configuration.blacklist_dirs.include? subentry
         subdirs.push(subentry)
-      elsif File.file?(subentry_fullpath)
+      elsif File.file?(subentry_path)
         files.push(subentry)
       end
     end
-    
-    @output = { :subdirs => subdirs.sort, :files => files.sort }
-    
-    respond_to do |format|
-      format.html { render }
-      format.json { render :json => @output}
-      format.xml {render :xml => @output.to_xml(:root => 'output')}
+    return { :subdirs => subdirs.sort.reverse, :files => files.sort }
+  end
+  
+  def index_recursive(entry_path, records = Array.new)
+    Dir.foreach(entry_path) do |subentry|
+      subentry_path = entry_path + '/' + subentry
+      if File.directory?(subentry_path) and !Rails.configuration.blacklist_dirs.include?(subentry)
+        index_recursive(subentry_path, records)
+      elsif File.file?(subentry_path)
+        records.push({ :path => Pathname.new(subentry_path).relative_path_from(Pathname.new(Rails.configuration.public_path + Rails.configuration.files_url)).to_s})
+      end
     end
+    return records
   end
 end
