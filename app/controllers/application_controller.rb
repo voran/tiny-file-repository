@@ -53,7 +53,7 @@ class ApplicationController < ActionController::Base
       if File.directory?(subentry_path) and !Rails.configuration.blacklist_dirs.include?(subentry)
         index_recursive(subentry_path, records)
       elsif File.file?(subentry_path)
-        records.push({ :path => subentry_path.split('/')[3..-1].join('/')})
+        records.push({ :path => subentry_path.force_encoding('ISO-8859-1').encode('UTF-8').split('/')[3..-1].join('/')})
       end
     end
     return records
