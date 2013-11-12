@@ -1,11 +1,11 @@
 <% entry_urlencoded = urlencode(@entry) %>
 <div class="col-md-12 well">
    <ul class="breadcrumb">           
-   <li><a href="/browse.html/">Home</a></li>
+   <li><a href="<%= browse_path(:trailing_slash => true) %>">Home</a></li>
    <% 0.upto(@entry.split('/').length - 1) do | n | %>
      <li>
          <span class="divider"></span> 
-         <a href="/browse.html/<%= entry_urlencoded.split('/')[0..n].join('/') %>/"><%= @entry.split('/')[n] %></a>
+         <a href="<%= browse_path + '/' + entry_urlencoded.split('/')[0..n].join('/') %>/"><%= @entry.split('/')[n] %></a>
      </li>
    <% end %>
    </ul>

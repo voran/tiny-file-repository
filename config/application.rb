@@ -68,5 +68,12 @@ module Muzika
     config.files_url = "/files/"
     
     config.blacklist_dirs = ['.', '..']
+    
+    config.index_password = 'changeme'
+    
+    # SEO Stuff
+    config.title = "Tiny File Repository"
+    config.meta_description = "Powered by Tiny File Repository"
+    config.meta_keywords = "File Repository"
   end
 end

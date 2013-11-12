@@ -1,0 +1,59 @@
+<div class="col-md-12 well"> 
+    <div class="row">
+        <form id="index-form" class="col-md-offset-3 col-md-6" method="get" action="<%= do_index_path %>">
+            <div class="input-group">
+                <input name="password" type="password" class="form-control" placeholder="Your password" value=""/>
+                <span class="input-group-btn">
+                  <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-flash"></i> Index now!</button>
+                </span>
+            </div>
+            <br/><br/>
+            <div id="success-alert" class="alert alert-success hide">Indexing finished successfully! You can now go back to the <%= link_to 'search page', root_path %>.
+                <a class="close" href="#" aria-hidden="true">&times;</a>
+            </div>
+            <div id="password-error-alert" class="alert alert-danger hide">Wrong password!
+                <a class="close" href="#" aria-hidden="true">&times;</a>
+            </div>
+            <div id="server-error-alert" class="alert alert-danger hide">Server error!
+                <a class="close" href="#" aria-hidden="true">&times;</a>
+            </div>
+            <div id="index-progress" class="progress progress-striped active hide">
+              <div class="progress-bar"  role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                <span>Indexing In Progress</span>
+              </div>
+            </div>
+        </form>
+      </div>
+    <script>
+    $(document).ready(function() {
+        $("#index-form button").click(function(e) {
+            e.preventDefault();
+            $("#index-progress").removeClass('hide');
+            $(".alert").addClass("hide");
+            $.ajax({
+                url: $("#index-form").attr('action') + ".json",
+                timeout: 0,
+                data: $("#index-form").serialize(),
+                dataType: "json",
+                error: function(x, e) {
+                    alert("error!");
+                    $("#index-progress").addClass('hide');
+                    $("#server-error-alert").removeClass('hide');
+                },
+                success: function(data) {
+                    $("#index-progress").addClass('hide');
+                    if (data["status"] === "ok") {
+                        $("#success-alert").removeClass('hide');
+                    } else if (data["status"] === "wrong_password") {
+                        $("#password-error-alert").removeClass('hide');
+                    }
+                }
+            });
+        });
+        
+        $(".close").click(function() {
+            $(this).parent().addClass('hide');
+        });
+    })
+    </script>
+</div>

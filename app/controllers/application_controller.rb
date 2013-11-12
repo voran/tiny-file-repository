@@ -16,10 +16,21 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  def index
-    FileRecord.delete_all
-    FileRecord.create(index_recursive(Rails.configuration.public_path + Rails.configuration.files_url))
-    redirect_to root_path
+  def do_index
+    if params[:password] == Rails.configuration.index_password
+      index_entries = index_recursive(Rails.configuration.public_path + Rails.configuration.files_url)
+      FileRecord.delete_all
+      FileRecord.create(index_entries)
+      status = :ok
+    else
+      status = :wrong_password
+    end
+    result = { :status => status }
+    respond_to do |format|
+      format.html { redirect_to search_path }
+      format.json { render :json => result}
+      format.xml {render :xml => result.to_xml(:root => 'output')}
+    end
   end
   
   def browse
@@ -58,4 +69,9 @@ class ApplicationController < ActionController::Base
     end
     return records
   end
+  
+  private
+    def file_record_params
+      params.require(:file_record).permit(:path)
+    end
 end
