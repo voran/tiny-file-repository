@@ -29,9 +29,9 @@
             </div>
             <div class="navbar-collapse collapse">
               <ul class="nav navbar-nav">            
-                <%= render 'layouts/navbar_link_to', :title => 'Search', :path => search_path %>
-                <%= render 'layouts/navbar_link_to', :title => 'Browse', :path => browse_path(:trailing_slash => true) %>
-                <%= render 'layouts/navbar_link_to', :title => 'Update Index', :path => index_path %>
+                <%= active_link_to 'Search', search_path, :wrap_tag => :li %>
+                <%= active_link_to 'Browse', browse_path(:trailing_slash => true), :wrap_tag => :li %>
+                <%= active_link_to 'Update Index', index_path, :wrap_tag => :li %>
               </ul>
             </div><!--/.nav-collapse -->
           </div>
