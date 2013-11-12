@@ -1,0 +1,6 @@
+<% if is_active_link?(path, :inclusive) %>
+  <li class="active">
+<% else %>
+  <li>
+<% end %>
+  <%= link_to title, path %>
