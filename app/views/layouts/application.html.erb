@@ -38,21 +38,9 @@
         </nav>
 
         <div id="main" class="container">
-
-                <%= yield %>
-
+            <%= yield %>
             <hr>
-            <footer>
-                <span> Copyright &copy; 2013 <a href="http://yavor.stoychev.bg" target="_blank">Yavor Stoychev</a>. Hosted at home on my <a href="http://yavor.stoychev.bg/x2.html" target="_blank">Odroid X2</a>.</span>
-                <span class="pull-right">
-                    <a href="https://www.facebook.com/stoychev.yavor" target="_blank">
-                        <img src="http://cdn.stoychev.bg/icons/social/fb.png" alt="facebook"/>
-                    </a>
-                    <a href="http://www.linkedin.com/pub/yavor-stoychev/4a/bb1/51a/" target="_blank">
-                        <img src="http://cdn.stoychev.bg/icons/social/li.png" alt="linkedin"/>
-                    </a>
-                    </span>
-            </footer>
+            <%= render 'layouts/includes/footer' %>
         </div>
     </body>
 </html>
