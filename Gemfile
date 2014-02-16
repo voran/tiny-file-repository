@@ -20,7 +20,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
-gem 'bootstrap-sass-rails'
+gem 'bootstrap-sass-rails', '>= 3.0.3.0'
 
 gem 'kaminari'
 gem 'bootstrap-kaminari-views'
