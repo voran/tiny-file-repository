@@ -23,6 +23,7 @@ gem 'jquery-rails'
 gem 'bootstrap-sass-rails'
 
 gem 'kaminari'
+gem 'bootstrap-kaminari-views'
 
 gem 'sqlite3'
 
@@ -45,4 +46,5 @@ gem 'thin'
 # To use debugger
 # gem 'debugger'
 
+gem 'faenza-file-icons-rails', '0.0.8'
 

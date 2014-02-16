@@ -1,25 +1,27 @@
 <% entry_urlencoded = urlencode(@entry) %>
 <div class="col-md-12 well">
-   <ul class="breadcrumb">           
-   <li><a href="<%= browse_path(:trailing_slash => true) %>">Home</a></li>
-   <% 0.upto(@entry.split('/').length - 1) do | n | %>
-     <li>
-         <span class="divider"></span> 
-         <a href="<%= browse_path + '/' + entry_urlencoded.split('/')[0..n].join('/') %>/"><%= @entry.split('/')[n] %></a>
-     </li>
-   <% end %>
-   </ul>
-<% @output[:subdirs].each do |subdir| %>
-  <div class="row">
-    <div class="col-md-1"><%= image_tag "dir.png", :class => "img-responsive" %></div>
-    <div class="col-md-9"><a href="<%=u subdir %>/"><%= subdir %></a></div>
-  </div>
-<% end %>
+    <ul class="breadcrumb">           
+        <li><a href="<%= browse_path(:trailing_slash => true) %>">Home</a></li>
+        <% 0.upto(@entry.split('/').length - 1) do | n | %>
+            <li>
+                <span class="divider"></span> 
+                <a href="<%= browse_path + '/' + entry_urlencoded.split('/')[0..n].join('/') %>/"><%= @entry.split('/')[n] %></a>
+            </li>
+        <% end %>
+    </ul>
+    <table class="table table-condensed table-hover table-striped">
+    <% @output[:subdirs].each do |subdir| %>
+      <tr>
+        <td><img src="<%= icon_for "folder" %>" class="img-responsive" alt="icon"></td>
+        <td><a href="<%=u subdir %>/"><%= subdir %></a></td>
+      </tr>
+    <% end %>
 
-<% @output[:files].each do |file| %>
-  <div class="row">
-    <div class="col-md-1"><%= image_tag "icon", :class => "img-responsive" %></div>
-    <div class="col-md-9"><a href="<%= Rails.configuration.files_url + (if entry_urlencoded == "" then "" else entry_urlencoded + '/' end) + u(file) %>"><%= file %></a></div>
-  </div>
-<% end %>
+    <% @output[:files].each do |file| %>
+      <tr>
+        <td><img src="<%= icon_for file.split(".")[-1] %>" class="img-responsive" alt="icon"></td>
+        <td><a href="<%= Rails.configuration.files_url + (if entry_urlencoded == "" then "" else entry_urlencoded + '/' end) + u(file) %>" target="_blank"><%= file %></a></td>
+      </tr>
+    <% end %>
+    </table>
 </div>

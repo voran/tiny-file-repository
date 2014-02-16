@@ -9,26 +9,27 @@
             </div>
         </form>
     </div>
-    
+
     <hr>
 <% if @files %>
+  <table class="table table-condensed table-hover table-striped">
   <% @files.each do |file| %>
     <% path = file.path %>
     <% path_urlencoded = urlencode(path) %>
-    <div class="row">
-      <div class="col-md-1"><img src="http://cdn.stoychev.info/icons/index/<%= path.split('.')[-1].downcase %>.png" class="img-responsive" alt="<%= path.split('.')[-1].downcase %>" /></div>
-      <div class="col-md-11">
+    <tr>
+      <td><img src="<%= icon_for path.split(".")[-1].downcase %>" class="img-responsive" alt="<%= path.split('.')[-1].downcase %>" /></td>
+      <td>
         <%  0.upto(path.split('/').length - 2).each do |n| %>
           <span class="divider muted">/ </span> 
-          <a href="<%= browse_path %>/<%=path_urlencoded.split('/')[0..n].join('/') %>/"><%= path.split('/')[n] %></a>
+          <a href="<%= browse_path %>/<%=path_urlencoded.split('/')[0..n].join('/') %>/" target="_blank"><%= path.split('/')[n] %></a>
         <% end %>
         <span class="divider muted">/ </span> 
-        <a href="<%= Rails.configuration.files_url + path_urlencoded %>"><%= path.split('/')[-1] %></a>
-      </div>
-    </div>
-  <% end %>
+        <a href="<%= Rails.configuration.files_url + path_urlencoded %>" target="_blank"><%= path.split('/')[-1] %></a>
+      </td>
+    </tr>
+    <% end %>
+  </table>
 
-
-  <%= paginate @files %>
+  <div><%= paginate @files, :theme => 'twitter-bootstrap-3', :pagination_class => "pagination-small pagination-centered" %></div>
 <% end %>
 </div>
