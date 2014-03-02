@@ -8,12 +8,6 @@ class ApplicationController < ActionController::Base
       conditions = [(['lower(path) LIKE ?'] * query.length).join(' AND ')] + query.map { |keyword| "%#{keyword.downcase}%" }
       @files = Kaminari.paginate_array(FileRecord.find(:all, :conditions => conditions)).page(params[:page])
     end
-    
-    respond_to do |format|
-      format.html { render }
-      format.json { render :json => @files}
-      format.xml {render :xml => @files.to_xml(:root => 'output')}
-    end
   end
   
   def do_index
@@ -36,12 +30,6 @@ class ApplicationController < ActionController::Base
   def browse
     @entry =  params[:dir] || ""
     @output = find_entries(Rails.configuration.public_path + Rails.configuration.files_url + @entry)
-    
-    respond_to do |format|
-      format.html { render }
-      format.json { render :json => @output}
-      format.xml {render :xml => @output.to_xml(:root => 'output')}
-    end
   end
   
   def find_entries(entry_path)
