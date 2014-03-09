@@ -122,7 +122,7 @@ DEPENDENCIES
   bootstrap-sass
   coffee-rails (~> 4.0.1)
   faenza-file-icons-rails
-  jquery-rails
+  jquery-rails (~> 3.1.0)
   kaminari
   rails (= 4.0.3)
   sass-rails (~> 4.0.1)

@@ -19,7 +19,7 @@ group :assets do
   gem 'uglifier', '>= 2.4.0'
 end
 
-gem 'jquery-rails'
+gem 'jquery-rails',   '~> 3.1.0'
 gem 'bootstrap-sass'
 
 gem 'kaminari'
